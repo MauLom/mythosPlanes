@@ -1,47 +1,99 @@
-# Svelte + TS + Vite
+# Mythos Planes - Web Client
 
-This template should help get you started developing with Svelte and TypeScript in Vite.
+Interactive web client for Mythos Planes built with Svelte, TypeScript, and PixiJS.
 
-## Recommended IDE Setup
+## Features
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+- **Interactive Board**: 20 draggable card sprites rendered with PixiJS
+- **60 FPS Performance**: Real-time FPS counter in top-right corner
+- **Drag & Drop**: Click and drag cards to reposition them
+- **Zoom Control**: Ctrl + Mouse Wheel to zoom in/out (0.1x to 5x)
+- **Window Resize**: Automatically adjusts canvas to viewport size
+- **Keyboard Hotkeys**:
+  - `R` - Reset view (zoom and position)
+  - `F` - Fit to screen (auto-scale all cards)
+  - `G` - Toggle grid (placeholder)
+  - `Z` - Zoom to 100%
 
-## Need an official Svelte framework?
+## Tech Stack
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+- **Svelte 5.39.6** - Reactive UI framework
+- **TypeScript** - Type-safe JavaScript
+- **Vite 7.2.2** - Fast build tool with HMR
+- **PixiJS 8.14.0** - WebGL rendering engine
+- **tinykeys 3.0.0** - Keyboard shortcuts
+- **idb-keyval 6.2.2** - IndexedDB storage
 
-## Technical considerations
+## Getting Started
 
-**Why use this over SvelteKit?**
+### Install Dependencies
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
-
-This template contains as little as possible to get started with Vite + TypeScript + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
-
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
-
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
-
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
-
-**Why include `.vscode/extensions.json`?**
-
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
-
-**Why enable `allowJs` in the TS template?**
-
-While `allowJs: false` would indeed prevent the use of `.js` files in the project, it does not prevent the use of JavaScript syntax in `.svelte` files. In addition, it would force `checkJs: false`, bringing the worst of both worlds: not being able to guarantee the entire codebase is TypeScript, and also having worse typechecking for the existing JavaScript. In addition, there are valid use cases in which a mixed codebase may be relevant.
-
-**Why is HMR not preserving my local component state?**
-
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/rixo/svelte-hmr#svelte-hmr).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```ts
-// store.ts
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
+```bash
+npm install
 ```
+
+### Development Server
+
+```bash
+npm run dev
+```
+
+Then open [http://localhost:5173](http://localhost:5173) in your browser.
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+Build output will be in the `dist/` directory.
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+### Type Checking
+
+```bash
+npm run check
+```
+
+## Project Structure
+
+```
+apps/client/
+├── src/
+│   ├── routes/
+│   │   └── Play.svelte      # Main /play view with PixiJS
+│   ├── types/
+│   │   └── tinykeys.d.ts    # Type definitions for tinykeys
+│   ├── App.svelte           # Root component with routing
+│   ├── app.css              # Global styles
+│   └── main.ts              # Application entry point
+├── public/                  # Static assets
+├── index.html               # HTML entry point
+├── vite.config.ts           # Vite configuration
+└── tsconfig.*.json          # TypeScript configuration
+```
+
+## Usage
+
+1. Navigate to the home page
+2. Click "Go to Play View" to enter the interactive board
+3. Drag cards around to reposition them
+4. Use Ctrl + Mouse Wheel to zoom
+5. Press hotkeys (R, F, G, Z) for view controls
+
+## Development
+
+### Recommended IDE Setup
+
+- [VS Code](https://code.visualstudio.com/)
+- [Svelte Extension](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode)
+
+### Why Vite instead of SvelteKit?
+
+This project uses Vite for maximum flexibility and minimal overhead. The goal is an interactive local board running entirely client-side without server-side routing or API requirements.
+
