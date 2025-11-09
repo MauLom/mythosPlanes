@@ -9,7 +9,14 @@
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json"
   },
+  "dependencies": {
+    "colyseus.js": "^0.16.22",
+    "idb-keyval": "^6.2.2",
+    "pixi.js": "^8.14.0",
+    "tinykeys": "^3.0.0"
+  },
   "devDependencies": {
+    "@mythosplanes/types": "file:../../packages/types",
     "@sveltejs/vite-plugin-svelte": "^6.2.1",
     "@tsconfig/svelte": "^5.0.5",
     "@types/node": "^24.6.0",
@@ -17,10 +24,5 @@
     "svelte-check": "^4.3.2",
     "typescript": "~5.9.3",
     "vite": "^7.1.7"
-  },
-  "dependencies": {
-    "idb-keyval": "^6.2.2",
-    "pixi.js": "^8.14.0",
-    "tinykeys": "^3.0.0"
   }
 }
